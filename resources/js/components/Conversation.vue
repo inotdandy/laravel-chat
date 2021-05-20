@@ -1,35 +1,41 @@
 <template>
-    <div class="conversation">
-        <h1>{{ contact ? contact.name : 'Select a contact' }}</h1>
-        <MessagesFeed :messages="messages" :contact="contact" />
-        <MessageComposer @send="sendMessage"/>
-    </div>
+  <div class="conversation">
+    <h1>{{ contact ? contact.name : "Select a contact" }}</h1>
+    <MessagesFeed :messages="messages" :contact="contact" />
+    <MessageComposer @send="sendMessage" />
+  </div>
 </template>
 
 <script>
-import MessagesFeed from './MessagesFeed';
-import MessageComposer from './MessageComposer';
+import MessagesFeed from "./MessagesFeed";
+import MessageComposer from "./MessageComposer";
 
 export default {
-    name: "Conversataion",
-    components: {
-        MessagesFeed,
-        MessageComposer
+  name: "Conversataion",
+  components: {
+    MessagesFeed,
+    MessageComposer,
+  },
+  props: {
+    contact: {
+      type: Object,
+      default: null,
     },
-    props: {
-        contact: {
-            type: Object,
-            default: null
-        },
-        messages: {
-            type: Array,
-            default: []
-        }
+    messages: {
+      type: Array,
+      default: [],
     },
-    methods: {
-        sendMessage(text){
-            console.log(text);
-        }
-    }
-}
+  },
+  methods: {
+    sendMessage(text) {
+      console.log(text);
+    },
+  },
+};
 </script>
+
+<style scoped>
+.conversation {
+  flex: 5;
+}
+</style>

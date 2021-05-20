@@ -1,41 +1,54 @@
 <template>
-    <div class="chat-app">
-        <Conversation :contact="contact" :messages="messages" />
-        <ContactList :contacts="contacts" />
-    </div>
+  <div class="chat-app">
+    <Conversation :contact="user" :messages="messages" />
+    <ContactList
+      :contacts="contacts"
+      @selectedContact="startConversationWith"
+    />
+  </div>
 </template>
 
 <script>
-    import Conversation from './Conversation';
-    import ContactList from './ContactList';
+import Conversation from "./Conversation";
+import ContactList from "./ContactList";
 
-    export default {
-        name: 'ChatApp',
-        props: {
-            user: {
-                type: Object,
-                required: true
-            }
-        },
-        components: {
-            Conversation,
-            ContactList
-        },
-        data(){
-            return{
-
-                contact: null,
-                messages: [],
-                contacts: [],
-            }
-        },
-        mounted() {
-            console.log(this.user);
-            axios.get('/contacts')
-                .then((response) => {
-                    console.log(response.data);
-                    this.contacts = response.data;
-                });
-        }
-    }
+export default {
+  name: "ChatApp",
+  props: {
+    user: {
+      type: Object,
+      required: true,
+    },
+  },
+  components: {
+    Conversation,
+    ContactList,
+  },
+  data() {
+    return {
+      selectedContact: null,
+      messages: [],
+      contacts: [],
+    };
+  },
+  mounted() {
+    axios.get("/contacts").then((response) => {
+      console.log(response.data);
+      this.contacts = response.data;
+    });
+  },
+  methods: {
+    startConversationWith(contact) {
+      axios.get(`/contacts/${contact.id}`).then((response) => {
+        this.selectedContact = response.data;
+      });
+    },
+  },
+};
 </script>
+
+<style scoped>
+.chat-app {
+  display: flex;
+}
+</style>

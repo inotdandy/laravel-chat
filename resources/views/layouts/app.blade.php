@@ -18,6 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .card-body{
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
