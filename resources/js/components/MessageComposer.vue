@@ -28,3 +28,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.composer textarea{
+  width: 96%;
+    margin: 10px;
+    padding: 6px;
+    border: 1px solid lightgray;
+    padding: 6px;
+    resize: none;
+    border-radius: 3px;
+}
+</style>

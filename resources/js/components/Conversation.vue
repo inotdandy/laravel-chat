@@ -37,5 +37,14 @@ export default {
 <style scoped>
 .conversation {
   flex: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.conversation h1{
+  font-size: 20px;
+  margin: 0;
+  border-bottom: 1px dashed lightgray;
+  padding: 10px;
 }
 </style>
